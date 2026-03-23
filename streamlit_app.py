@@ -10,7 +10,7 @@ st.subheader("저는 김수현입니다")
 # 소개 섹션
 st.markdown("---")
 st.header("📝 소개")
-st.write(
+st.write("""
 저는 인천대학교 수학교육과에 재학중인 2학년 김수현입니다.unsafe_all
 여기에 간단한 자기소개를 작성해주세요.
 - 직업, 관심사 등을 적을 수 있습니다.
