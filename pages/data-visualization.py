@@ -30,11 +30,13 @@ try:
     font_prop = fm.FontProperties(fname=font_path)
     font_name = font_prop.get_name()
     plt.rcParams["font.family"] = font_name
+    plt.rcParams["font.sans-serif"] = [font_name]
     plt.rcParams["axes.unicode_minus"] = False
     plotly_font_family = font_name
 except Exception as e:
     st.warning(f"한글 폰트 설정에 실패했습니다: {e}")
     plotly_font_family = "Arial"
+    font_prop = fm.FontProperties(family="Arial")
 
 st.title("데이터 시각화 페이지")
 
@@ -61,9 +63,13 @@ st.subheader("막대 그래프 (Matplotlib)")
 fig, ax = plt.subplots()
 ax.bar(sample_data['카테고리'], sample_data['값1'], label='값1')
 ax.bar(sample_data['카테고리'], sample_data['값2'], bottom=sample_data['값1'], label='값2')
-ax.set_xlabel('카테고리')
-ax.set_ylabel('값')
-ax.legend()
+ax.set_xlabel('카테고리', fontproperties=font_prop)
+ax.set_ylabel('값', fontproperties=font_prop)
+ax.set_title('카테고리별 값', fontproperties=font_prop)
+ax.tick_params(axis='x', labelrotation=0)
+for label in ax.get_xticklabels() + ax.get_yticklabels():
+    label.set_fontproperties(font_prop)
+ax.legend(prop={'family': font_name if 'font_name' in locals() else 'sans-serif'})
 st.pyplot(fig)
 
 # 선 그래프 (Plotly)
