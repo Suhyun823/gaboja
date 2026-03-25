@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -5,8 +6,26 @@ from matplotlib import font_manager as fm
 import plotly.express as px
 import plotly.graph_objects as go
 
+# 한글 웹폰트 적용 (Google Fonts)
+st.markdown(
+    """
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+    html, body, [class*="css"] {
+        font-family: 'Noto Sans KR', sans-serif !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Noto Sans KR', sans-serif !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # 한글 폰트 설정 (fonts/NotoSansKR-Bold.ttf)
-font_path = "fonts/NotoSansKR-Bold.ttf"
+base_dir = os.path.dirname(__file__)
+font_path = os.path.join(base_dir, '..', 'fonts', 'NotoSansKR-Bold.ttf')
+font_path = os.path.normpath(font_path)
 try:
     font_prop = fm.FontProperties(fname=font_path)
     font_name = font_prop.get_name()

@@ -1,5 +1,21 @@
 import streamlit as st
 
+# 한글 웹폰트 적용 (Google Fonts)
+st.markdown(
+    """
+    <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+    html, body, [class*="css"] {
+        font-family: 'Noto Sans KR', sans-serif !important;
+    }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Noto Sans KR', sans-serif !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 # 페이지 설정
 st.set_page_config(page_title="자기소개", layout="wide")
 
